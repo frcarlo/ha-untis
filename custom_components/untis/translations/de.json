@@ -1,0 +1,99 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "WebUntis verbinden",
+        "description": "Mit einem Eltern- oder Schülerkonto anmelden.",
+        "data": {
+          "url": "WebUntis-URL",
+          "username": "Benutzername",
+          "password": "Passwort",
+          "verify_ssl": "SSL-Zertifikat prüfen"
+        },
+        "data_description": {
+          "url": "Die Adresse aus dem Browser inklusive Schule, z. B. https://xyz.webuntis.com/WebUntis/?school=name"
+        }
+      },
+      "students": {
+        "title": "Kinder auswählen",
+        "description": "Jedes Kind bekommt ein eigenes Gerät mit Kalender und Sensoren.",
+        "data": { "students": "Kinder" }
+      },
+      "reauth_confirm": {
+        "title": "Erneut anmelden",
+        "description": "WebUntis hat das Passwort für {username} abgelehnt.",
+        "data": { "password": "Passwort" }
+      }
+    },
+    "error": {
+      "invalid_url": "Die Schule fehlt in der URL, z. B. …/WebUntis/?school=name",
+      "invalid_auth": "Benutzername oder Passwort falsch",
+      "cannot_connect": "WebUntis ist nicht erreichbar",
+      "no_students": "Für dieses Konto gibt es keinen Stundenplan",
+      "no_selection": "Mindestens ein Kind auswählen",
+      "unknown": "Unerwarteter Fehler"
+    },
+    "abort": {
+      "already_configured": "Dieses Konto ist bereits eingerichtet",
+      "reauth_successful": "Erneut angemeldet"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Kinder",
+        "data": { "students": "Kinder" }
+      }
+    },
+    "error": {
+      "no_selection": "Mindestens ein Kind auswählen"
+    },
+    "abort": {
+      "invalid_auth": "Benutzername oder Passwort falsch",
+      "cannot_connect": "WebUntis ist nicht erreichbar",
+      "no_students": "Für dieses Konto gibt es keinen Stundenplan",
+      "unknown": "Unerwarteter Fehler"
+    }
+  },
+  "entity": {
+    "calendar": {
+      "timetable": { "name": "Stundenplan" }
+    },
+    "event": {
+      "lesson_change": {
+        "name": "Stundenänderung",
+        "state_attributes": {
+          "event_type": {
+            "state": { "cancelled": "Entfall", "changed": "Änderung" }
+          }
+        }
+      }
+    },
+    "sensor": {
+      "current_lesson": { "name": "Aktuelle Stunde" },
+      "next_lesson": { "name": "Nächste Stunde" },
+      "next_lesson_start": { "name": "Beginn nächste Stunde" },
+      "wake_up": { "name": "Nächste Stunde zum Aufstehen" },
+      "today_start": { "name": "Schulbeginn heute" },
+      "today_end": { "name": "Schulende heute" },
+      "tomorrow_start": { "name": "Schulbeginn morgen" },
+      "tomorrow_end": { "name": "Schulende morgen" },
+      "cancelled_today": { "name": "Ausfälle heute", "unit_of_measurement": "Stunden" },
+      "cancelled_tomorrow": { "name": "Ausfälle morgen", "unit_of_measurement": "Stunden" },
+      "changed_today": { "name": "Änderungen heute", "unit_of_measurement": "Stunden" },
+      "changed_tomorrow": { "name": "Änderungen morgen", "unit_of_measurement": "Stunden" }
+    }
+  },
+  "services": {
+    "get_timetable": {
+      "name": "Stundenplan abrufen",
+      "description": "Liefert die Stunden eines Kindes für einen Zeitraum (bis 62 Tage).",
+      "fields": {
+        "device_id": { "name": "Kind", "description": "Das Untis-Gerät des Kindes." },
+        "start": { "name": "Start", "description": "Erster Tag." },
+        "end": { "name": "Ende", "description": "Letzter Tag." },
+        "show_cancelled": { "name": "Ausfälle einschließen", "description": "Auch entfallene Stunden zurückgeben." }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+get_timetable:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          filter:
+            - integration: untis
+    start:
+      required: true
+      selector:
+        date:
+    end:
+      required: true
+      selector:
+        date:
+    show_cancelled:
+      required: false
+      default: true
+      selector:
+        boolean:

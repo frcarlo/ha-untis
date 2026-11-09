@@ -1,0 +1,99 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect WebUntis",
+        "description": "Log in with a parent or student account.",
+        "data": {
+          "url": "WebUntis URL",
+          "username": "Username",
+          "password": "Password",
+          "verify_ssl": "Verify SSL certificate"
+        },
+        "data_description": {
+          "url": "The address from the browser including the school, e.g. https://xyz.webuntis.com/WebUntis/?school=name"
+        }
+      },
+      "students": {
+        "title": "Choose students",
+        "description": "Each student gets a device with a calendar and sensors.",
+        "data": { "students": "Students" }
+      },
+      "reauth_confirm": {
+        "title": "Log in again",
+        "description": "WebUntis rejected the password for {username}.",
+        "data": { "password": "Password" }
+      }
+    },
+    "error": {
+      "invalid_url": "Add the school to the URL, e.g. …/WebUntis/?school=name",
+      "invalid_auth": "Wrong username or password",
+      "cannot_connect": "Could not reach WebUntis",
+      "no_students": "This account has no timetable to show",
+      "no_selection": "Choose at least one student",
+      "unknown": "Unexpected error"
+    },
+    "abort": {
+      "already_configured": "This account is already set up",
+      "reauth_successful": "Logged in again"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Students",
+        "data": { "students": "Students" }
+      }
+    },
+    "error": {
+      "no_selection": "Choose at least one student"
+    },
+    "abort": {
+      "invalid_auth": "Wrong username or password",
+      "cannot_connect": "Could not reach WebUntis",
+      "no_students": "This account has no timetable to show",
+      "unknown": "Unexpected error"
+    }
+  },
+  "entity": {
+    "calendar": {
+      "timetable": { "name": "Timetable" }
+    },
+    "event": {
+      "lesson_change": {
+        "name": "Lesson change",
+        "state_attributes": {
+          "event_type": {
+            "state": { "cancelled": "Cancelled", "changed": "Changed" }
+          }
+        }
+      }
+    },
+    "sensor": {
+      "current_lesson": { "name": "Current lesson" },
+      "next_lesson": { "name": "Next lesson" },
+      "next_lesson_start": { "name": "Next lesson start" },
+      "wake_up": { "name": "Next lesson to wake up" },
+      "today_start": { "name": "School start today" },
+      "today_end": { "name": "School end today" },
+      "tomorrow_start": { "name": "School start tomorrow" },
+      "tomorrow_end": { "name": "School end tomorrow" },
+      "cancelled_today": { "name": "Cancelled today", "unit_of_measurement": "lessons" },
+      "cancelled_tomorrow": { "name": "Cancelled tomorrow", "unit_of_measurement": "lessons" },
+      "changed_today": { "name": "Changes today", "unit_of_measurement": "lessons" },
+      "changed_tomorrow": { "name": "Changes tomorrow", "unit_of_measurement": "lessons" }
+    }
+  },
+  "services": {
+    "get_timetable": {
+      "name": "Get timetable",
+      "description": "Returns a student's lessons for a date range (up to 62 days).",
+      "fields": {
+        "device_id": { "name": "Student", "description": "The student's Untis device." },
+        "start": { "name": "Start", "description": "First day." },
+        "end": { "name": "End", "description": "Last day." },
+        "show_cancelled": { "name": "Include cancelled", "description": "Also return cancelled lessons." }
+      }
+    }
+  }
+}
